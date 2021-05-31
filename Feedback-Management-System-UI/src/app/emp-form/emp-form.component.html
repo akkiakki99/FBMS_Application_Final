@@ -1,0 +1,55 @@
+<div class="col-sm-6 mx-auto">
+    <h3>{{ isEditing ? "Edit" : "New"}} Admin </h3>
+
+    <div *ngIf = "alert" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success !</strong> Admin registered successfully.
+        <button (click) = "closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    
+    <form class="form" [formGroup]="empForm" (ngSubmit)="handleSubmit()">
+        <div class="form-group">
+            <label class="form-control-label">Employee Id:</label>
+            <input type="number" formControlName="employeeId" class="form-control" readonly  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Username:</label>
+            <input type="text" formControlName="employeeName" class="form-control" />
+            <div class="alert alert-danger" *ngIf="employeeNamefc.invalid && (employeeNamefc.touched || employeeNamefc.dirty)">
+                <span *ngIf="employeeNamefc.errors.required">This field is mandate</span>
+                <span *ngIf="employeeNamefc.errors.minLength">Minimum 3 characters expected</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Password :</label>
+            <input type="password" formControlName="employeePassword" class="form-control" />
+            <div class="alert alert-danger" *ngIf="employeePasswordfc.invalid && (employeePasswordfc.touched || employeePasswordfc.dirty)">
+                <span *ngIf="employeePasswordfc.errors.required">This field is mandate</span>
+                <span *ngIf="employeePasswordfc.errors.minLength">Minimum 4 characters expected</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Role  :</label>
+            <select formControlName="employeeRole" class="form-control">
+                <option *ngFor="let r of roles" [value]="r">
+                    {{r}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Skills  :</label>
+            <select formControlName="empSkill" class="form-control">
+                <option *ngFor="let s of skills" [value]="s">
+                    {{s}}
+                </option>
+            </select>
+        </div>
+        <button class="btn btn-block" [disabled]="empForm.invalid">
+            Save
+        </button>
+    </form>
+</div>
+
+
+

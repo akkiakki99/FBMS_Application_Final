@@ -1,0 +1,62 @@
+<!-- Login Form -->
+    <!-- <div class="container">
+      <div class="d-flex justify-content-center h-100">
+        <div class="card">
+          <div class="card-header">
+            <h3>Sign In</h3>
+          <div class="card-body">
+    
+    <form (ngSubmit)="checkLogin();loginForm.reset() " #loginForm=ngForm>
+      <div class="input-group form-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text"><i class="fas fa-user"></i></span>
+				</div>
+        
+        <input type="text" class="form-control" [(ngModel)]="login.employeeName" id="login" class="fadeIn second" name="username" placeholder="Enter Username" required pattern="([A-z0-9À-ž\s]){2,}" #username = ngModel>
+          <div *ngIf="username.dirty && username.touched && username.invalid" class="alert alert-danger">
+            Username is invalid
+        </div>
+      </div>
+
+      <div class="input-group form-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fas fa-key"></i></span>
+        </div>
+        <input type="password"  class="form-control" [(ngModel)]="login.employeePassword" id="password" class="fadeIn third" name="password" placeholder="Enter Password"  required
+          pattern="[A-Za-z0-9@!#$%^&*()]{4,}" #password=ngModel>
+            <div *ngIf="password.dirty && password.touched && password.invalid" class="alert alert-danger">
+               Password is invalid
+            </div>
+      </div>
+      <input type="submit" class="btn float-right login_btn" value="Login" [disabled]="!loginForm.valid">
+    </form>
+  </div>
+</div>
+</div>
+</div>
+</div> -->
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+  
+
+    <!-- Login Form -->
+    <form (ngSubmit)="checkLogin();loginForm.reset() " #loginForm=ngForm>
+      <input type="text" [(ngModel)]="login.employeeName" id="login" class="fadeIn second" name="username" placeholder="Enter Username" required pattern="([A-z0-9À-ž\s]){2,}" #username = ngModel>
+      <div *ngIf="username.dirty && username.touched && username.invalid" class="alert alert-danger">
+        Username is invalid
+      </div>
+      <input type="password"  [(ngModel)]="login.employeePassword" id="password" class="fadeIn third" name="password" placeholder="Enter Password"  required
+      pattern="[A-Za-z0-9~`!@#$%^&*()_]{4,}" #password=ngModel>
+      <div *ngIf="password.dirty && password.touched && password.invalid" class="alert alert-danger">
+        Password is invalid
+    </div>
+      <input type="submit" class="fadeIn fourth" value="Login" [disabled]="!loginForm.valid">
+    </form>
+
+
+  </div>
+</div>
+

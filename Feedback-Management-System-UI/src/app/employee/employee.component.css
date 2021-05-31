@@ -1,0 +1,10 @@
+.btn {
+    width: auto;
+    height: auto;
+    float: left;
+    font-variant: small-caps;
+    /* font-family: Copperplate; */
+    /* font-family: "Times New Roman", Times, serif; */
+  border: 2.5px solid #050102;
+  background: #d64646;
+ }

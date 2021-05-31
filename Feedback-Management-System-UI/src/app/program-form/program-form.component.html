@@ -1,0 +1,45 @@
+<div class="col-sm-6 mx-auto">
+    <h3>{{ isEditing ? "Edit" : "New"}} Program</h3>
+    
+    <form class="form" [formGroup]="programForm" (ngSubmit)="handleSubmit()">
+        <div class="form-group">
+            <label class="form-control-label">Training Id:</label>
+            <input type="number" formControlName="programId" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Start Date : </label>
+            <input type="date" formControlName="startDate" class="form-control" />
+            <div class="alert alert-danger" *ngIf="startDatefc.invalid && (startDatefc.touched || startDatefc.dirty)">
+                <span *ngIf="startDatefc.errors.required">This field is mandate</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">End Date :</label>
+            <input type="date" formControlName="endDate" class="form-control" />
+            <div class="alert alert-danger" *ngIf="endDatefc.invalid && (endDatefc.touched || endDatefc.dirty)">
+                <span *ngIf="endDatefc.errors.required">This field is mandate</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Course assigned :</label>
+            <select formControlName="course" class = "form-control">
+                <option *ngFor = "let c of course" [value]="c.courseId">
+                    {{ c.courseName }}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Employee assigned :</label>
+            <select formControlName= "trainer" class = "form-control">
+                <option [value]="emp.employeeId">
+                    {{ emp.employeeName }}
+                </option>
+            </select>
+        </div>
+        <button class="btn btn-block" [disabled]="programForm.invalid">
+            Save
+        </button>
+    </form>
+</div>
+
+

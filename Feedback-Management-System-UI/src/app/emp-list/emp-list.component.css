@@ -1,0 +1,11 @@
+table{
+    width:100%;
+    height:200px;
+    table-layout: initial;
+    border: 1px solid black;
+  }
+
+  h2{
+    font-variant: small-caps;
+    
+  }

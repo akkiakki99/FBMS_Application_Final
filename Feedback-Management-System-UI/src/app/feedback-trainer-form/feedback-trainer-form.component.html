@@ -1,0 +1,88 @@
+<div class="col-sm-6 mx-auto">
+    <h3>New Feedback to Trainer</h3>
+
+    <div *ngIf = "alert" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success !</strong> Your feedback is recorded successfully.
+        <button (click) = "closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+    <form class="form" [formGroup]="feedbackForm" (ngSubmit)="handleSubmit()">
+        <div class="form-group">
+            <label class="form-control-label">Feedback Id:</label>
+            <input type="number" formControlName="fdtrainerId" class="form-control"  readonly/>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Trainer assigned :</label>
+            <select formControlName= "trainer" class = "form-control">
+                <option *ngFor = "let e of emp" [value]="e.employeeId">
+                    {{ e.employeeName }}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group" >
+            <label class="form-control-label"> Technical Skills: </label>
+            <select formControlName="technicalskills" class="form-control">
+                <option *ngFor="let tech of tech" [value]="tech">
+                    {{tech}}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label"> Clarity of Speech: </label>
+            <select formControlName="clarityofspeech" class="form-control">
+                <option *ngFor="let c of cos" [value]="c">
+                    {{c}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label"> Communication Skill: </label>
+          <select formControlName="communicationalskills" class="form-control">
+            <option *ngFor="let comm of comm" [value]="comm">
+                {{comm}}
+            </option>
+        </select>
+      </div>
+      <div class="form-group">
+          <label class="form-control-label">Friendliness (Interactive): </label>
+          <select formControlName="friendliness" class="form-control">
+            <option *ngFor="let frnd of frnd" [value]="frnd">
+                {{frnd}}
+            </option>
+        </select>
+      </div>
+      <div class="form-group">
+          <label class="form-control-label"> Overall Rating: </label>
+          <select formControlName="overallrating" class="form-control">
+            <option *ngFor="let oall of oall" [value]="oall">
+                {{oall}}
+            </option>
+        </select>
+      </div>
+      <div class="form-group">
+          <label class="form-control-label"> Comments: </label>
+        <textarea name="comments" id="comments" cols="10" rows="3"
+            formControlName="comments" class="form-control"></textarea>
+            <div  class="alert alert-danger" *ngIf="commentsfc.invalid && (commentsfc.touched || commentsfc.dirty)">
+                <span *ngIf="commentsfc.errors.required">This field is mandatory</span>
+            </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-control-label"> Suggestion: </label>
+        <textarea name="suggestions" id="suggestions" cols="10" rows="3"
+                        formControlName="suggestions" class="form-control"></textarea>
+          <div   class="alert alert-danger" *ngIf="suggestionsfc.invalid && (suggestionsfc.touched || suggestionsfc.dirty)">
+              <span *ngIf="suggestionsfc.errors.required">This field is mandate</span>
+          </div>
+    </div>
+
+
+      <button class="btn btn-block c-6 p-2" [disabled]="feedbackForm.invalid">SUBMIT</button>
+  </form>
+</div>

@@ -1,0 +1,51 @@
+
+<h2 class=" text-center bg-light mt-2 p-2 container-fluid font-weight-bold ">Feedback List</h2>
+
+
+    <nav>
+        <form class="form text-center" (ngSubmit) = "handleSubmit()">
+        <div class="form-group ">
+        <label class="form-label">Trainer Name : </label>
+        <select class="ml-2 col-sm-2" [(ngModel)] = "trainerid" name="trainerid">
+            <option  *ngFor = "let e of employee" [value] = "e.employeeId">
+                {{ e.employeeName }} 
+            </option>
+        </select>
+        <button class="btn btn-block btn-info mx-auto col-sm-2">SUBMIT</button>
+        </div>
+        </form>
+    </nav>
+    <hr>
+
+<table  class="table table-hover table-dark table-striped"  *ngIf="feedback" >
+
+    <thead >
+        <tr>
+            <th>Feedback ID</th>
+            <th>Technical Skills</th>
+            <th>Clarity of Speech</th>
+            <th>Communicational Skills</th>
+            <th>Friendliness</th>
+            <th>Overall Rating</th>
+            <th>Comments</th>
+            <th>Suggestions</th>
+            <th>Trainer Name</th>
+            
+        </tr>
+    </thead>
+    <tbody>     
+        <tr *ngFor = "let f of feedback">
+            <td>{{ f.fdtrainerId }} </td>
+            <td>{{ f.technicalskills }} </td>
+            <td>{{ f.clarityofspeech }} </td>
+            <td>{{ f.communicationalskills }} </td>
+            <td>{{ f.friendliness }} </td>
+            <td>{{ f.overallrating }} </td>
+            <td>{{ f.comments }} </td>
+            <td>{{ f.suggestions }} </td>
+            <td>{{ f.trainer.employeeName }} </td>
+        </tr>
+    </tbody>
+
+    <!-- <pagination-controls (pageChange) = "p = $event"></pagination-controls> -->
+</table>

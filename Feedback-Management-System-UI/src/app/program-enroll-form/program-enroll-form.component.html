@@ -1,0 +1,32 @@
+<div class="col-sm-6 mx-auto">
+    <h3>New Program Enrollment For Participant</h3>
+    
+    <form class="form" [formGroup]="enrollForm" (ngSubmit)="handleSubmit()">
+        <div class="form-group">
+            <label class="form-control-label">Enrollment Id:</label>
+            <input type="number" formControlName="id" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Program Dates assigned to Employee :</label>
+            <select formControlName="program" class = "form-control">
+                <option *ngFor = "let p of program" [value]="p.programId">
+                    {{ p.startDate | date:'shortDate' }} to {{ p.endDate | date:'shortDate' }}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Employee assigned to Program :</label>
+            <select formControlName= "employee" class = "form-control">
+                <option *ngFor = "let e of employee" [value]="e.employeeId">
+                    {{ e.employeeName }}
+                </option>
+            </select>
+        </div>
+        <button class="btn btn-block" [disabled]="enrollForm.invalid">
+            Save
+        </button>
+    </form>
+</div>
+
+
+

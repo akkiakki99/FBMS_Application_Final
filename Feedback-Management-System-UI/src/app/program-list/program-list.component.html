@@ -1,0 +1,38 @@
+<h2 class= "bg-light mt-2 p-2 container-fluid font-weight-bold text-center">Programs List</h2>
+<app-msgbox *ngIf = "!err && !program">
+    <strong>loading ... please wait ...</strong>
+</app-msgbox>
+<app-msgbox *ngIf = "err" [isError] = "true">
+    <strong>{{ err }}</strong>
+</app-msgbox>
+
+<nav class=" text-center row-md-10"> 
+     Program Id:
+    <input class="form-label ml-2 mt-2" type="text" name="programId" [(ngModel)] = "programId" (ngModelChange) = "SearchBox()"
+   placeholder="Program ID">
+</nav>
+<hr>
+
+<table class="table table-hover table-dark table-striped" *ngIf="program">
+    <thead>
+        <tr>
+            <th (click) = "sort('programId')">Program ID&nbsp; <i class="fas fa-sort"></i></th>
+            <th (click) = "sort('startDate')">Start Date&nbsp; <i class="fas fa-sort"></i></th>
+            <th (click) = "sort('programId')">End Date&nbsp; <i class="fas fa-sort"></i></th>
+            <th (click) = "sort('course')">Course Id&nbsp; <i class="fas fa-sort"></i></th>
+            <th (click) = "sort('trainer')">Employee Id&nbsp; <i class="fas fa-sort"></i></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of program | orderBy: key: reverse | paginate:{itemsPerPage:10, currentPage:p};">
+            <td>{{ p.programId }} </td>
+            <td>{{ p.startDate }} </td>
+            <td>{{ p.endDate }} </td>
+            <td>{{ p.course }} </td>
+            <td>{{ p.trainer }} </td>
+            <td><button class="btn btn-sm btn-danger" (click)="delete(p.programId)">Delete</button></td>
+            <td><a class="btn btn-sm btn-info" routerLink="/coordinator/program/edit/{{p.programId}}">Edit</a></td>
+        </tr>
+    </tbody>
+    <pagination-controls (pageChange) = "p = $event"></pagination-controls>
+</table>

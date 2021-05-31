@@ -1,0 +1,46 @@
+<div class="col-sm-6 mx-auto">
+    <h3>{{ isEditing ? "Edit" : "New"}} Course</h3>
+
+    <div *ngIf = "alert" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success !</strong> Course added successfully.
+        <button (click) = "closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    
+    <form class="form" [formGroup]="courseForm" (ngSubmit)="handleSubmit()">
+        <div class="form-group">
+            <label class="form-control-label">Course Id:</label>
+            <input type="number" formControlName="courseId" class="form-control" readonly/>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Course Name:</label>
+            <input type="text" formControlName="courseName" class="form-control" />
+            <div class="alert alert-danger" *ngIf="courseNamefc.invalid && (courseNamefc.touched || courseNamefc.dirty)">
+                <span *ngIf="courseNamefc.errors.required">This field is mandate</span>
+                <span *ngIf="courseNamefc.errors.minLength">Minimum 3 characters expected</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Course Desciption :</label>
+            <input type="text" formControlName="courseDescription" class="form-control" />
+            <div class="alert alert-danger" *ngIf="courseDesfc.invalid && (courseDesfc.touched || courseDesfc.dirty)">
+                <span *ngIf="courseDesfc.errors.required">This field is mandate</span>
+                <span *ngIf="courseDesfc.errors.minlength">Minimum 3 characters expected</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label">Number Of Days :</label>
+            <input type="number" formControlName="noOfDays" class="form-control" />
+            <div class="alert alert-danger" *ngIf="this.noOfDaysfc.invalid && (this.noOfDaysfc.touched || this.noOfDaysfc.dirty)">
+                <span *ngIf="noOfDaysfc.errors.required">This field is mandate</span>
+                <span *ngIf="noOfDaysfc.errors.min">Minimum 1  expected</span>
+                <span *ngIf="noOfDaysfc.errors.max">Maximum 90 expected</span>
+            </div>
+        </div>
+        <button class="btn btn-block" [disabled]="courseForm.invalid">
+            Save
+        </button>
+    </form>
+</div>
+

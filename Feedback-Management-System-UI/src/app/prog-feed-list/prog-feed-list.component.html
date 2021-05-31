@@ -1,0 +1,49 @@
+<h3>Feedback List</h3>
+
+<nav>
+    <form class="form" (ngSubmit) = "handleSubmit()">
+    <div class="form-group col-sm-4">
+    <label class="form-label">Enter Program Id : </label>
+    <select class="ml-2 col-sm-8" [(ngModel)] = "programid" name="programid">
+        <option  *ngFor = "let p of program" [value] = "p.programId">
+            {{ p.startDate | date  }} to {{ p.endDate | date }}
+        </option>
+    </select>
+    <button class="btn btn-block btn-info p-2 col-sm-2">SUBMIT</button>
+    </div>
+    </form>
+</nav>
+<hr>
+
+<table  class="table table-hover table-dark table-striped"  *ngIf="feedback" >
+
+    <thead >
+        <tr>
+            <th>Feedback ID</th>
+            <th>Clarity</th>
+            <th>Technical Knowledge</th>
+            <th>Program connected to Real World Application</th>
+            <th>Presentation</th>
+            <th>Overall Experience </th>
+            <th>Comments</th>
+            <th>Suggestions</th>
+            <th>Program Id</th>
+            
+        </tr>
+    </thead>
+    <tbody> 
+       
+        <tr *ngFor = "let feed of feedback">
+            <td>{{ feed.fdprogramId }} </td>
+            <td>{{ feed.clarity }} </td>
+            <td>{{ feed.technicality }} </td>
+            <td>{{ feed.realworldapp }} </td>
+            <td>{{ feed.interesting }} </td>
+            <td>{{ feed.overallrating }} </td>
+            <td>{{ feed.comments }} </td>
+            <td>{{ feed.suggestions }} </td>
+            <td>{{ feed.program.programId }} </td>
+        </tr>
+    </tbody>
+
+</table>

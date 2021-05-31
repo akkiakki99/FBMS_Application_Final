@@ -1,0 +1,91 @@
+<div class="col-sm-6 mx-auto">
+    <h3>New Feedback to Program</h3>
+
+    <div *ngIf = "alert" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success !</strong> Your feedback is recorded successfully.
+        <button (click) = "closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+    <form class="form" [formGroup]="feedbackForm" (ngSubmit)="handleSubmit()">
+        <div class="form-group">
+            <label class="form-control-label">Feedback Id:</label>
+            <input type="number" formControlName="fdprogramId" class="form-control" readonly/>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label">Program Dates assigned to You:</label>
+            <select formControlName="program" class = "form-control">
+                <option *ngFor = "let p of program" [value]="p.programId">
+                    {{ p.startDate | date:'shortDate' }} to {{ p.endDate | date:'shortDate' }}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group" >
+            <label class="form-control-label"> Clarity: </label>
+            <select formControlName="clarity" class="form-control">
+                <option *ngFor="let clarity of clarity" [value]="clarity">
+                    {{clarity}}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label"> Program connected to Real World Application: </label>
+             <select formControlName="realworldapp" class="form-control">
+            <option *ngFor="let rwa of rwa" [value]="rwa">
+                {{rwa}}
+            </option>
+        </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label"> Technical Knowledge: </label>
+          <select formControlName="technicality" class="form-control">
+            <option *ngFor="let tech of tech" [value]="tech">
+                {{tech}}
+            </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+          <label class="form-control-label">Presentation: </label>
+          <select formControlName="interesting" class="form-control">
+            <option *ngFor="let interest of interest" [value]="interest">
+                {{interest}}
+            </option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+          <label class="form-control-label"> Overall Experience: </label>
+          <select formControlName="overallrating" class="form-control">
+            <option *ngFor="let oall of oall" [value]="oall">
+                {{oall}}
+            </option>
+        </select>
+      </div>
+      <div class="form-group">
+          <label class="form-control-label"> Comments: </label>
+        <textarea name="comments" id="comments" cols="10" rows="3"
+            formControlName="comments" class="form-control"></textarea>
+            <div  class="alert alert-danger" *ngIf="commentsfc.invalid && (commentsfc.touched || commentsfc.dirty)">
+                <span *ngIf="commentsfc.errors.required">This field is mandatory</span>
+            </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-control-label"> Suggestion: </label>
+        <textarea name="suggestions" id="suggestions" cols="10" rows="3"
+                        formControlName="suggestions" class="form-control"></textarea>
+          <div   class="alert alert-danger" *ngIf="suggestionsfc.invalid && (suggestionsfc.touched || suggestionsfc.dirty)">
+              <span *ngIf="suggestionsfc.errors.required">This field is mandate</span>
+          </div>
+    </div>
+
+
+
+      <button class="btn btn-block c-6 p-2" [disabled]="feedbackForm.invalid">SUBMIT</button>
+  </form></div>

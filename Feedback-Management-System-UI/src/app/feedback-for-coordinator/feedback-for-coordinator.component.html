@@ -1,0 +1,49 @@
+<h3>Feedback List</h3>
+<!-- <nav class="navbar"> 
+    Search employee by Employee Id:
+    <input class="form-label" type="text" name="employeeId" [(ngModel)] = "employeeId" (ngModelChange) = "SearchBox()"
+   placeholder="Employee ID">
+   Search employee by Skill: 
+     <input class="form-label" type="text" name="skills" [(ngModel)] = "skills" (ngModelChange) = "Search()"
+    placeholder="Skill">
+</nav> -->
+<br><br><hr>
+
+<table  class="table table-bordered table-hover"  *ngIf="feedback" >
+
+    <thead >
+        <tr>
+            <th>Feedback ID</th>
+            <th>Employee ID</th>
+            <th>Program ID</th>
+            <th>Feedback Review</th>
+            <th>Technical SKill</th>
+            <th>Clarity Of Speech</th>
+            <th>Communicational SKill</th>
+            <th>Friendliness</th>
+            <th>Overall Rating</th>
+            <th>Comments</th>
+            <th>Suggestions</th>
+            <th>Program Date</th>
+            
+        </tr>
+    </thead>
+    <tbody> 
+        <tr *ngFor = "let feed of feedback">
+            <td>{{ feed.feedbackId }} </td>
+            <td>{{ feed.employeeId }} </td>
+            <td>{{ feed.programId }} </td>
+            <td>{{ feed.feedbackIdentifier }} </td>
+            <td>{{ feed.technicalSkills }} </td>
+            <td>{{ feed.clarityOfSpeech }} </td>
+            <td>{{ feed.communicationalSkills }} </td>
+            <td>{{ feed.friendliness }} </td>
+            <td>{{ feed.overallRating }} </td>
+            <td>{{ feed.comments }} </td>
+            <td>{{ feed.suggestions }} </td>
+            <td>{{ feed.created_At }} </td>
+        </tr>
+    </tbody>
+
+    <!-- <pagination-controls (pageChange) = "p = $event"></pagination-controls> -->
+</table>

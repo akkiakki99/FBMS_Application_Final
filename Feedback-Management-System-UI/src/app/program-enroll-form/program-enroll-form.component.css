@@ -1,0 +1,22 @@
+form {
+    margin-left:auto;
+    margin-right:auto;
+    width: auto;
+    height: auto;
+    padding:30px;
+    border: 2px solid rgba(0,0,0,.2);
+    background: rgba(0, 0, 0, 0.5); 
+    -moz-box-shadow: 0 0 13px 3px rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 13px 3px rgba(0,0,0,.5);
+    box-shadow: 0 0 13px 3px rgba(0,0,0,.5);
+    overflow: hidden; 
+}
+
+.btn {
+	  width: 138px;
+	  height: 44px;
+	  float:right;
+    border: 2px solid #14cc3c;
+    background: #19ce28;
+   }
+

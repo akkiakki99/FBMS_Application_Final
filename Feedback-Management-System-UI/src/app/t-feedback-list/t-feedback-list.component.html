@@ -1,0 +1,40 @@
+<h3>Trainer Feedback List</h3>
+<app-msgbox *ngIf="!err && !ftp">
+    <strong>loading... please wait...</strong>
+</app-msgbox>
+
+<app-msgbox *ngIf="err" [isError]= "true">
+    <strong>{{ err }}</strong>
+</app-msgbox>
+
+
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Feedback ID</th>
+            <th>Technical Skills </th>
+            <th>Clarity Of Speech</th>
+            <th>Communication</th>
+            <th>Nature</th>
+            <th>Overall Rating</th>
+            <th>Comment</th>
+            <th>Suggestion</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ ftp.fdtrainerId}} </td>
+            <td>{{ ftp.technicalskills }} </td>
+            <td>{{ ftp.clarityofspeech }} </td>
+            <td>{{ ftp.communicationalskills }} </td>
+            <td>{{ ftp.friendliness }} </td>
+            <td>{{ ftp.overallrating }} </td>
+            <td>{{ ftp.comments }} </td>
+            <td>{{ ftp.suggestions }} </td>
+            <td><a class="btn btn-sm btn-info" >Edit</a></td>
+            
+            </tr>
+    </tbody>
+</table>

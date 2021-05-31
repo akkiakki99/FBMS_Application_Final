@@ -1,0 +1,48 @@
+<h2 class= "bg-light mt-2 p-2 container-fluid font-weight-bold text-center" >Employee List</h2>
+<!-- <section class="container-fluid p-4"></section> -->
+
+<nav class=" text-center row-md-10"> 
+    Employee Name:
+    <input class="form-label mr-5" type="text" name="employeeName" [(ngModel)] = "Id" (ngModelChange) = "SearchBox()"
+   placeholder="Employee Name">
+    Employee Skill: 
+     <input class="form-label" type="text" name="empSkill" [(ngModel)] = "Skill" (ngModelChange) = "Search()"
+    placeholder="Skill">
+</nav>
+<hr>
+
+<app-msgbox *ngIf = "!err && !emps">
+    <strong>loading ... please wait ...</strong>
+</app-msgbox>
+<app-msgbox *ngIf = "err" [isError] = "true">
+    <strong>{{ err }}</strong>
+</app-msgbox>
+
+<table  class="table table-bordered table-hover table-dark table-striped"  *ngIf="emps" >
+
+    <thead >
+        <tr>
+            <th (click) = "sort('employeeId')">Employee ID&nbsp; <i class="fas fa-sort"></i></th>
+            <th (click) = "sort('employeeName')">Employee Name&nbsp; <i class="fas fa-sort"></i></th>
+            <th>Password</th>
+            <th (click) = "sort('employeeRole')">Role&nbsp; <i class="fas fa-sort"></i></th>
+            <th (click) = "sort('empSkill')">Skills&nbsp; <i class="fas fa-sort"></i></th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+       
+        <tr *ngFor = "let e of emps| orderBy: key: reverse | paginate:{itemsPerPage:10, currentPage:p};">
+            <td>{{ e.employeeId }} </td>
+            <td>{{ e.employeeName }} </td>
+            <td>{{ e.employeePassword }} </td>
+            <td>{{ e.employeeRole }} </td>
+            <td>{{ e.empSkill }} </td>
+            <td><button class="btn btn-sm btn-danger" (click)="delete(e.employeeId)">Delete</button></td>
+            <td><button class="btn btn-sm btn-primary" routerLink="/admin/employee/edit/{{e.employeeId}}">Edit</button></td>
+            
+        </tr>
+    </tbody>
+
+    <pagination-controls (pageChange) = "p = $event"></pagination-controls>
+</table>

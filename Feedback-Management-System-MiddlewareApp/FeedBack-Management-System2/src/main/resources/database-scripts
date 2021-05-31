@@ -1,0 +1,55 @@
+CREATE TABLE courses_master
+(course_id             Number(19)     CONSTRAINT courses_cid_pk       PRIMARY KEY,
+ course_name           varchar2(20)   CONSTRAINT courses_cname_nn     NOT NULL,
+ course_description    varchar2(50)   CONSTRAINT courses_cdes_nn      NOT NULL,
+ num_of_days           NUMBER(19)     CONSTRAINT courses_nod_chk      CHECK(num_of_days>0)
+ );
+ 
+ ---------------------------------------------------------------------------------------------------
+CREATE TABLE programs_master
+(program_id       Number(19)    CONSTRAINT programs_tid_pk     PRIMARY KEY,
+ start_date        date          CONSTRAINT programs_sdate_nn   NOT NULL,
+ end_date          date          CONSTRAINT programs_edate_nn   NOT NULL,
+ course_course_id        number(19)  CONSTRAINT programs_cid_fk     REFERENCES courses_master(course_id),
+ trainer_employee_id      number(10)  CONSTRAINT programs_eid_fk     REFERENCES  employees_master(employee_id)
+ ); 
+ ---------------------------------------------------------------------------------------------------------
+ CREATE TABLE fdtrainer
+( feedback_trainer_id number(19)  CONSTRAINT fdtrainer_id_pk PRIMARY KEY,
+  technicalskills   number(4)     CONSTRAINT fdtrainer_f1_nn NOT NULL,
+  clarityofspeech   number(4)     CONSTRAINT fdtrainer_f2_nn NOT NULL,
+  communicationalskills   number(4)     CONSTRAINT fdtrainer_f3_nn NOT NULL,
+  friendliness   number(4)     CONSTRAINT fdtrainer_f4_nn NOT NULL,
+  overallrating   number(4)     CONSTRAINT fdtrainer_f5_nn NOT NULL,
+  comments  varchar2(70) CONSTRAINT fdtrainer_comm_nn NOT NULL,
+  suggestions varchar2(70) CONSTRAINT fdtrainer_sugg_nn NOT NULL,
+  trainer_employee_id number(10) CONSTRAINT fdtrainer_tid_fk REFERENCES employees_master(employee_id)
+ );
+------------------------------------------------------------------------------------------------------------
+ CREATE TABLE FdProgram
+( feedback_program_id number(19)  CONSTRAINT fdprogram_id_pk PRIMARY KEY,
+  clarity   number(4)     CONSTRAINT fdprogram_f1_nn NOT NULL,
+  technicality   number(4)     CONSTRAINT fdprogram_f2_nn NOT NULL,
+  realworldapp  number(4)     CONSTRAINT fdprogram_f3_nn NOT NULL,
+  interesting   number(4)     CONSTRAINT fdprogram_f4_nn NOT NULL,
+  overallrating   number(4)     CONSTRAINT fdprogram_f5_nn NOT NULL,
+  comments  varchar2(70) CONSTRAINT fdprogram_comm_nn NOT NULL,
+  suggestions varchar2(70) CONSTRAINT fdprogram_sugg_nn NOT NULL,
+  program_program_id number(10) CONSTRAINT fdprogram_pid_fk REFERENCES programs_master(program_id)
+ );
+ ----------------------------------------------------------------------------------------------------------------
+CREATE TABLE employees_master
+(employee_id          number(10)     CONSTRAINT  emp_id_chk   PRIMARY KEY,
+ employee_name        varchar2(20)   CONSTRAINT  emp_name_chk  NOT NULL,
+ employee_password    varchar(20)     CONSTRAINT employee_password_chk   NOT NULL, 
+ employee_role        varchar(20)     CONSTRAINT employee_role_chk   NOT NULL,
+ employee_skill    varchar(20) CONSTRAINT employee_skill_chk   NOT NULL
+);
+-------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE enroll_master
+(enroll_id   number(19)   CONSTRAINT  enroll_id_pk  PRIMARY KEY,
+ employee_employee_id number(19)   CONSTRAINT  enroll_eid_fk REFERENCES employees_master(employee_id),
+ program_program_id number(19)   CONSTRAINT   enroll_pid_fk   REFERENCES  programs_master(program_id)
+);
+-------------------------------------------------------------------------------------------------------------------
